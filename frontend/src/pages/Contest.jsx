@@ -167,12 +167,18 @@ export default function Contest() {
       navigate(`/contest/${code}/results`);
     };
 
+    const handleConnectError = (err) => {
+      console.error("Socket.io Connection Error (Contest):", err.message);
+    };
+
     socket.on("scoreUpdated", handleScoreUpdated);
     socket.on("contestEnded", handleContestEnded);
+    socket.on("connect_error", handleConnectError);
 
     return () => {
       socket.off("scoreUpdated", handleScoreUpdated);
       socket.off("contestEnded", handleContestEnded);
+      socket.off("connect_error", handleConnectError);
     };
   }, [contest, code, currentUser, navigate]);
 

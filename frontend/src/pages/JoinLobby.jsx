@@ -24,9 +24,16 @@ export default function JoinLobby() {
         fetchPublicLobbies();
       }
     };
+    const handleConnectError = (err) => {
+      console.error("Socket.io Connection Error (JoinLobby):", err.message);
+    };
+
     socket.on("publicLobbiesUpdated", handleUpdate);
+    socket.on("connect_error", handleConnectError);
+
     return () => {
       socket.off("publicLobbiesUpdated", handleUpdate);
+      socket.off("connect_error", handleConnectError);
     };
   }, [activeTab]);
 

@@ -24,6 +24,10 @@ export default function Lobby() {
 
     socket.emit("joinLobby", code);
 
+    socket.on("connect_error", (err) => {
+      console.error("Socket.io Connection Error:", err.message);
+    });
+
     socket.on("lobbyUpdated", fetchLobby);
     
     socket.on("contestStarted", () => {
@@ -41,6 +45,7 @@ export default function Lobby() {
     return () => {
       socket.emit("leaveLobby", code);
 
+      socket.off("connect_error");
       socket.off("lobbyUpdated");
       socket.off("lobbyDeleted");
       socket.off("contestStarted");

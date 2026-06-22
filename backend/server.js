@@ -17,13 +17,29 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 
+const rawFrontend = process.env.FRONTEND_URL || "http://localhost:5173";
+const cleanFrontend = rawFrontend.endsWith("/") ? rawFrontend.slice(0, -1) : rawFrontend;
+const allowedOrigins = [
+  cleanFrontend,
+  cleanFrontend + "/",
+  "http://localhost:5173",
+  "http://localhost:5173/",
+];
+
 export const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
-app.use(cors());
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 connectDB();
