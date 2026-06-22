@@ -91,21 +91,8 @@ To run this project locally, clone the repository and configure your backend and
    ```
 4. Open [http://localhost:5173](http://localhost:5173) in your browser.
 
----
 
-## 📦 Deployment Configuration
 
-When deploying the application to production, make sure the environment variables are correctly mapped:
 
-### Frontend Environment Variables (e.g. Vercel)
-- `VITE_API_URL`: Point this to your backend service (e.g. `https://clashcodes.onrender.com`).
 
-### Backend Environment Variables (e.g. Render / Railway)
-- `FRONTEND_URL`: Point this to your frontend Vercel URL (e.g. `https://clash-of-codes-ten.vercel.app`).
-- `EXECUTION_MODE`: Set to `piston-proxy` to sandbox execution.
 
----
-
-## 🛡️ License
-
-This project is licensed under the MIT License.
