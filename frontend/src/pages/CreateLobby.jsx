@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { API_BASE_URL } from "../config";
 
 const TOPICS = [
   "Arrays",
@@ -50,7 +51,7 @@ export default function CreateLobby() {
       setError(null);
       const token = localStorage.getItem("token");
 
-      const response = await fetch("http://localhost:5000/lobbies", {
+      const response = await fetch(`${API_BASE_URL}/lobbies`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

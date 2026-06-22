@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import socket from "../socket";
+import { API_BASE_URL } from "../config";
 
 export default function JoinLobby() {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ export default function JoinLobby() {
         return;
       }
 
-      const response = await fetch("http://localhost:5000/lobbies/public", {
+      const response = await fetch(`${API_BASE_URL}/lobbies/public`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -72,7 +73,7 @@ export default function JoinLobby() {
       setError(null);
       const token = localStorage.getItem("token");
 
-      const response = await fetch("http://localhost:5000/lobbies/join", {
+      const response = await fetch(`${API_BASE_URL}/lobbies/join`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

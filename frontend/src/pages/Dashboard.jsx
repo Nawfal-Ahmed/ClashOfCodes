@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useMemo } from "react";
+import { API_BASE_URL } from "../config";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ export default function Dashboard() {
       try {
         const token = localStorage.getItem("token");
         if (!token) return;
-        const response = await fetch("http://localhost:5000/users/active-lobby", {
+        const response = await fetch(`${API_BASE_URL}/users/active-lobby`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

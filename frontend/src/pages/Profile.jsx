@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { API_BASE_URL } from "../config";
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ export default function Profile() {
         return;
       }
 
-      const response = await fetch("http://localhost:5000/users/profile", {
+      const response = await fetch(`${API_BASE_URL}/users/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -77,7 +78,7 @@ export default function Profile() {
     try {
       setSaving(true);
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/users/profile", {
+      const response = await fetch(`${API_BASE_URL}/users/profile`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -129,7 +130,7 @@ export default function Profile() {
       setMessage(null);
       const token = localStorage.getItem("token");
 
-      const response = await fetch("http://localhost:5000/users/profile", {
+      const response = await fetch(`${API_BASE_URL}/users/profile`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

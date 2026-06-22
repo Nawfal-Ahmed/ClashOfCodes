@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
+import { API_BASE_URL } from "../config";
 export default function Login() {
   const navigate = useNavigate();
 
@@ -12,7 +13,7 @@ export default function Login() {
 
   const checkActiveLobbyAndRedirect = async (token) => {
     try {
-      const response = await fetch("http://localhost:5000/users/active-lobby", {
+      const response = await fetch(`${API_BASE_URL}/users/active-lobby`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -51,7 +52,7 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/login", {
+      const response = await fetch(`${API_BASE_URL}/login`, {
         method: "POST",
 
         headers: {
@@ -161,7 +162,7 @@ export default function Login() {
   <GoogleLogin
   onSuccess={async (credentialResponse) => {
     try {
-      const response = await fetch("http://localhost:5000/google-login", {
+      const response = await fetch(`${API_BASE_URL}/google-login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { API_BASE_URL } from "../config";
 
 import ContestHeader from "../components/contest/ContestHeader";
 import QuestionNavigator from "../components/contest/QuestionNavigator";
@@ -181,7 +182,7 @@ export default function Contest() {
         localStorage.getItem("token");
 
       const response = await fetch(
-        `http://localhost:5000/contest/${code}`,
+        `${API_BASE_URL}/contest/${code}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -222,7 +223,7 @@ export default function Contest() {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/contest/${code}/end`,
+        `${API_BASE_URL}/contest/${code}/end`,
         {
           method: "POST",
           headers: {
@@ -297,7 +298,7 @@ export default function Contest() {
       const promises = testCasesToRun.map(async (tc, index) => {
         try {
           const response = await fetch(
-            "http://localhost:5000/api/execute",
+            `${API_BASE_URL}/api/execute`,
             {
               method: "POST",
               headers: {
@@ -388,7 +389,7 @@ export default function Contest() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `http://localhost:5000/contest/${code}/submit`,
+        `${API_BASE_URL}/contest/${code}/submit`,
         {
           method: "POST",
           headers: {

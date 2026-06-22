@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { API_BASE_URL } from "../config";
 
 export default function Results() {
   const { code } = useParams();
@@ -16,7 +17,7 @@ export default function Results() {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/contest/${code}/results`,
+        `${API_BASE_URL}/contest/${code}/results`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

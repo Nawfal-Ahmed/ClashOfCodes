@@ -4,6 +4,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import socket from "../socket";
+import { API_BASE_URL } from "../config";
 
 export default function Lobby() {
   const { code } = useParams();
@@ -53,7 +54,7 @@ export default function Lobby() {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/lobbies/${code}`,
+        `${API_BASE_URL}/lobbies/${code}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -81,7 +82,7 @@ export default function Lobby() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `http://localhost:5000/lobbies/${code}/leave`,
+        `${API_BASE_URL}/lobbies/${code}/leave`,
         {
           method: "POST",
           headers: {
@@ -107,7 +108,7 @@ export default function Lobby() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `http://localhost:5000/lobbies/${code}/start`,
+        `${API_BASE_URL}/lobbies/${code}/start`,
         {
           method: "POST",
           headers: {
