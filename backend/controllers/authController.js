@@ -5,7 +5,7 @@ import { OAuth2Client } from "google-auth-library";
 import User from "../models/User.js";
 
 const client = new OAuth2Client(
-  "267517179806-cuehpm0dv2q4op75qkm6t5hcnnc8mao7.apps.googleusercontent.com"
+  process.env.GOOGLE_CLIENT_ID || "267517179806-cuehpm0dv2q4op75qkm6t5hcnnc8mao7.apps.googleusercontent.com"
 );
 
 export const register = async (req, res) => {
